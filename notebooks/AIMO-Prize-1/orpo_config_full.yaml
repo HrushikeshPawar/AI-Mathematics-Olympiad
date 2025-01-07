@@ -1,0 +1,47 @@
+## Data
+# dataset: 'Hrushi/ORPO-Gemma-1.1-7b-IT-Part-1a'
+dataset: 'Hrushi/ORPO-Mistral-7B-Instruct-v0.2-Part-1a'
+
+## Model arguments
+# model_name_or_path: "google/gemma-1.1-7b-it"
+model_name_or_path: "mistralai/Mistral-7B-Instruct-v0.2"
+model_revision: main
+
+### bnb arguments
+load_in_4bit: true
+bnb_4bit_quant_type: 'nf4'
+use_bnb_nested_quant: true
+torch_dtype: 'bfloat16'
+
+### LoRA Config
+lora_r: 256
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target_modules: ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj']
+
+## ORPO Training Arguments
+max_length: 512
+max_prompt_length: 512
+# max_completion_length:
+beta: 0.1
+learning_rate: 0.000008 # 8e-6
+lr_scheduler_type: 'cosine'
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+num_train_epochs: 1
+# max_steps=MAX_STEPS,
+warmup_steps: 5
+logging_steps: 1
+gradient_checkpointing: true
+output_dir: 'Training_Outputs/Test'
+overwrite_output_dir: true
+report_to: 'wandb'
+# run_name=RUN_NAME,
+optim: 'paged_adamw_8bit'
+remove_unused_columns: false
+truncation_mode: 'keep_end'
+push_to_hub: true
+resume_from_checkpoint: false
+hub_strategy: 'every_save'
+hub_private_repo: true
+include_tokens_per_second: false
