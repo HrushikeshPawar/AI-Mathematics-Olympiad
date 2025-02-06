@@ -7,7 +7,7 @@ nvidia_cuda_runtime_cu12==12.1.105
 nvidia_nvjitlink_cu12==12.5.40
 nvidia_nvtx_cu12==12.1.105
 triton==2.3.0
-vllm==0.4.3
+vllm==0.7.2
 nvidia_nccl_cu12==2.20.5
 xformers==0.0.26.post1
 nvidia_cufft_cu12==11.0.2.54
